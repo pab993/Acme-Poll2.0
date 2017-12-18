@@ -1,0 +1,204 @@
+
+package services;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+
+import repositories.PollerRepository;
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
+import security.UserAccountRepository;
+import domain.Poller;
+import forms.PollerForm;
+
+@Service
+@Transactional
+public class PollerService {
+
+	//Managed Repository =============================================================================
+
+	@Autowired
+	private PollerRepository		pollerRepository;
+
+	@Autowired
+	private UserAccountRepository	userAccountRepository;
+
+
+	//	@Autowired
+	//	private Validator				validator;
+
+	//Constructor methods ============================================================================
+
+	//Simple CRUD methods ============================================================================
+
+	public Poller findOne(int id) {
+		Poller poller;
+
+		poller = pollerRepository.findOne(id);
+		Assert.notNull(poller);
+
+		return poller;
+	}
+
+	public Poller create() {
+
+		Poller poller = new Poller();
+
+		UserAccount userAccount = new UserAccount();
+		Collection<Authority> authorities = new ArrayList<Authority>();
+		Authority authority = new Authority();
+		authority.setAuthority("POLLER");
+		authorities.add(authority);
+		userAccount.setAuthorities(authorities);
+		userAccount.setEnabled(true);
+
+		poller.setUserAccount(userAccount);
+
+		return poller;
+	}
+
+	public Collection<Poller> findAll() {
+
+		Collection<Poller> pollers;
+
+		pollers = pollerRepository.findAll();
+		Assert.notNull(pollers);
+
+		return pollers;
+	}
+
+	public Poller save(Poller poller) {
+		Assert.notNull(poller);
+
+		Poller saved = pollerRepository.save(poller);
+
+		return saved;
+	}
+
+	// Other Bussiness methods
+	// =======================================================================
+
+	public void ban(int pollerId) {
+		Poller poller = findOne(pollerId);
+		Assert.notNull(poller);
+		if (poller.getUserAccount().isEnabled())
+			poller.getUserAccount().setEnabled(false);
+		else
+			poller.getUserAccount().setEnabled(true);
+
+		this.save(poller);
+
+	}
+
+	public Poller reconstruct(PollerForm pollerForm, BindingResult binding) {
+		// TODO Auto-generated method stub
+		Poller poller = create();
+
+		poller.setName(pollerForm.getName());
+		poller.setSurname(pollerForm.getSurname());
+		poller.setEmail(pollerForm.getEmail());
+		poller.setPhoneNumber(pollerForm.getPhoneNumber());
+		poller.setPostalAddress(pollerForm.getPostalAddress());
+		poller.getUserAccount().setUsername(pollerForm.getUsername());
+		poller.getUserAccount().setPassword(new Md5PasswordEncoder().encodePassword(pollerForm.getPassword(), null));
+		poller.getUserAccount().setEnabled(true);
+
+		comprobarContrasena(pollerForm.getPassword(), pollerForm.getRepeatPassword(), binding);
+		comprobarPhoneNumber(pollerForm.getPhoneNumber(), binding);
+		comprobarCuentaUnica(pollerForm.getUsername(), binding);
+
+		return poller;
+	}
+
+	private boolean comprobarContrasena(String password, String passwordRepeat, BindingResult binding) {
+		FieldError error;
+		String[] codigos;
+		boolean result;
+
+		if (StringUtils.isNotBlank(password) && StringUtils.isNotBlank(passwordRepeat))
+			result = password.equals(passwordRepeat);
+		else
+			result = false;
+
+		if (!result) {
+			codigos = new String[1];
+			codigos[0] = "poller.password.mismatch";
+			error = new FieldError("pollerForm", "password", password, false, codigos, null, "");
+			binding.addError(error);
+		}
+
+		return result;
+	}
+
+	private boolean comprobarPhoneNumber(String phoneNumber, BindingResult binding) {
+		FieldError error;
+		String[] codigos;
+		boolean result;
+
+		if (phoneNumber == null || phoneNumber.isEmpty()) {
+			result = true;
+		} else {
+			result = false;
+		}
+
+		if (!result) {
+			if (phoneNumber.matches("^[+][a-zA-Z]{2}([(][0-9]{1,3}[)])?[0-9]{4,25}$") || phoneNumber.matches("^[0-9]{4,25}$")) {
+				result = true;
+			} else {
+				codigos = new String[1];
+				codigos[0] = "poller.phoneNumber.error";
+				error = new FieldError("pollerForm", "phoneNumber", phoneNumber, false, codigos, null, "");
+				binding.addError(error);
+			}
+		}
+
+		return result;
+	}
+
+	private void comprobarCuentaUnica(String username, BindingResult binding) {
+		FieldError error;
+		String[] codigos;
+		UserAccount result;
+
+		if (StringUtils.isNotBlank(username) && StringUtils.isNotBlank(username))
+			result = userAccountRepository.findByUsername(username);
+		else
+			result = null;
+
+		if (result != null) {
+			codigos = new String[1];
+			codigos[0] = "poller.userAccount.taken";
+			error = new FieldError("pollerForm", "username", username, false, codigos, null, "");
+			binding.addError(error);
+		}
+
+	}
+
+	public Poller findByPrincipal() {
+		Poller result;
+		UserAccount userAccount;
+		try {
+			userAccount = LoginService.getPrincipal();
+			Assert.notNull(userAccount);
+			Assert.isTrue(userAccount.getId() != 0);
+
+			result = pollerRepository.findByUserAccountId(userAccount.getId());
+			Assert.notNull(result);
+		} catch (Throwable oops) {
+			result = null;
+		}
+
+		return result;
+	}
+
+}

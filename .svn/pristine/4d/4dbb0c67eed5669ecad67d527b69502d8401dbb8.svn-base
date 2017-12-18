@@ -1,0 +1,44 @@
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<%@taglib prefix="jstl"	uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
+<!-- Listing table -->
+	
+<fieldset>
+
+	<legend>
+		<b> <spring:message code="bill.info" /></b>
+	</legend>
+
+	<spring:message code="bill.momentDue" />
+	:
+	<fmt:formatDate pattern = "dd/MM/yyyy HH:mm" value = "${receipt.bill.momentDue}" />
+	<br>
+	
+	<spring:message code="bill.amountDue" />
+	:
+	<jstl:out value="${receipt.bill.amountDue}"></jstl:out>Euros
+	<br>
+	
+	<jstl:if test="${receipt.bill.paid == false }">
+		<spring:message code="bill.unpaid" />
+	</jstl:if>
+	
+	<jstl:if test="${receipt.bill.paid == true }">
+		<spring:message code="bill.paid" />
+	</jstl:if>
+
+</fieldset>
+<br>
+
+<a href="${receipt.pdf }"><spring:message code="receipt.pdf" /></a>
+<br><br>
+
+
+<input type="button" name="cancel" value="<spring:message code="receipt.cancel" />" onclick="javascript: window.location.replace('<spring:url value='/bill/myList.do' />')" />
+

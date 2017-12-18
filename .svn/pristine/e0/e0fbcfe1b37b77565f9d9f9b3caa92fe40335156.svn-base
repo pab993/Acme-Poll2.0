@@ -1,0 +1,27 @@
+# messages_es.properties
+#
+# Copyright (C) 2017 Universidad de Sevilla
+# 
+# The use of this project is hereby constrained to the conditions of the 
+# TDG Licence, a copy of which you may download from 
+# http://www.tdg-seville.info/License.html
+
+
+poll.banner					=	Imagen
+poll.title					=	Título
+poll.description			=	Descripción
+poll.endActive				=	Fin de la encuesta
+poll.startActive			=	Comienzo de la encuesta
+poll.ticker					=	Identificador
+
+bill.momentDue				= 	Vencimiento
+bill.amountDue				=	Cantidad debida
+bill.paid.yes				= 	Pagado
+bill.paid.no				= 	No pagado
+bill.receipt				=	Recibo
+bill.receipt.create			=	Añadir recibo
+bill.poll					=	Encuesta
+
+bill.cancel					= 	Cancelar
+
+bill.commit.error			=	No se ha podido realizar esta operación

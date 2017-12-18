@@ -1,0 +1,58 @@
+# messages_es.properties
+#
+# Copyright (C) 2017 Universidad de Sevilla
+# 
+# The use of this project is hereby constrained to the conditions of the 
+# TDG Licence, a copy of which you may download from 
+# http://www.tdg-seville.info/License.html
+
+
+poll.banner					=	Imagen
+poll.title					=	Título
+poll.description			=	Descripción
+poll.endActive				=	Fin de la encuesta
+poll.startActive			=	Comienzo de la encuesta
+poll.ticker					=	Identificador
+
+poll.cancel					=	Volver a la página principal
+poll.cancel.list			= 	Volver a la lista de encuestas
+poll.cancel.myList			=	Volver a mis encuestas
+
+poll.info					=	Información general
+poll.submit					=	Completar
+poll.save					=	Guardar
+poll.delete					=	Eliminar
+poll.confirm				=	¿Estás seguro de eliminar esta encuesta?
+poll.edit					=	Editar
+poll.create					= 	Crear una encuesta
+
+poll.display				= 	Hacer encuesta
+poll.commit.error			=	Deben responderse todas las preguntas.
+poll.commit.error.2			= 	No se ha podido realizar esta operación
+
+poll.dates.inverted.1		=	La fecha de inicio debe ser menor que la fecha de fin.
+poll.dates.inverted.2		=	La fecha fin debe ser mayor que la fecha de inicio.
+poll.endDate.minimum		=	El periodo activo de esta encuesta es muy pequeño
+
+poll.keyword				=	Buscar encuestas
+poll.search					=	Buscar
+poll.results				=	Resultados
+poll.not.started			=	La encuesta aún no ha empezado
+poll.finished				=	La encuesta ha acabado
+poll.deny					=	La razón puede ser que ya hayas completado la encuesta.
+poll.not.available			= 	Encuesta no disponible
+poll.edit.deny				=	No se puede editar la encuesta porque puede que esté activa o ya haya finalizado
+poll.startActive.future		= 	La encuesta debe empezar en el futuro
+poll.endActive.future		= 	La encuesta debe terminar en el futuro
+poll.min					=	¿Tiene la encuesta poco tiempo activo?
+poll.time.short				=	El tiempo activo es muy pequeño, así que no se mostrará en el sistema
+
+poll.question.list			= 	Lista de preguntas
+
+poll.info.optional			=	Información opcional. Rellene estos campos si quiere aportar más información
+poll.name					=	Nombre
+poll.genre					=	Sexo
+poll.default				=	----
+poll.man					=	Hombre
+poll.woman					= 	Mujer
+poll.city					=	Ciudad

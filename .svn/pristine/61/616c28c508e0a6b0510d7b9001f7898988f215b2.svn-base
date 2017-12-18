@@ -1,0 +1,26 @@
+# messages_es.properties
+#
+# Copyright (C) 2017 Universidad de Sevilla
+# 
+# The use of this project is hereby constrained to the conditions of the 
+# TDG Licence, a copy of which you may download from 
+# http://www.tdg-seville.info/License.html
+
+actor.name						= Nombre
+actor.surname					= Apellidos
+actor.email						= Correo Electrónico
+actor.phoneNumber				= Teléfono
+actor.postalAddress				= Dirección postal
+actor.city						= Ciudad
+actor.country					= País
+
+actor.edit.profile				= Editar perfil
+actor.personalData				= Datos personales
+actor.submit					= Guardar Cambios
+actor.save.error				= No se ha podido realizar esta operación
+actor.postalAddress.error		= El patrón del código postal no es correcto
+actor.vat.error					= El patrón del vat no es correcto
+actor.vat.empty.error			= El vat no debe estar en vacío
+actor.cancel					= Volver
+
+actor.phoneNumber.error			= El teléfono no coincide con ningún patrón

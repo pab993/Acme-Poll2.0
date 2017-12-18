@@ -1,0 +1,81 @@
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<%@taglib prefix="jstl"	uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+
+<!-- Listing table -->
+	
+<fieldset>
+
+	<legend>
+		<b> <spring:message code="bill.info" /></b>
+	</legend>
+
+	<spring:message code="bill.momentDue" />
+	:
+	<fmt:formatDate pattern = "dd/MM/yyyy HH:mm" value = "${receipt.bill.momentDue}" />
+	<br>
+	
+	<spring:message code="bill.amountDue" />
+	:
+	<jstl:out value="${receipt.bill.amountDue}"></jstl:out>Euro/s
+	<br>
+	
+	<jstl:if test="${receipt.bill.paid == false }">
+		<spring:message code="bill.unpaid" />
+	</jstl:if>
+	
+	<jstl:if test="${receipt.bill.paid == true }">
+		<spring:message code="bill.paid" />
+	</jstl:if>
+
+</fieldset>
+<br>
+
+<a href="${receipt.pdf }"><spring:message code="receipt.pdf" /></a>
+<br><br>
+
+<security:authorize access="hasRole('ADMIN')">
+
+<jstl:if test="${receipt.endorsed == false }">
+
+	<form:form action="bill/edit.do" modelAttribute="bill">
+		<form:hidden path="id" />
+		<form:hidden path="version" />
+		<form:hidden path="receipt"/>
+		<form:hidden path="amountDue"/>
+		<form:hidden path="momentDue"/>
+		<form:hidden path="poll"/>
+				
+		<!--<acme:textbox code="bill.paid" path="paid"/>-->
+		
+		<form:label path="paid" ><spring:message code="bill.payment"/></form:label>
+			<form:select path="paid">
+				<form:option value="false"><spring:message code="bill.not.endorsed"/></form:option>
+				<form:option value="true"><spring:message code="bill.endorsed"/></form:option>
+		</form:select>
+		<br>
+		<br>
+				
+		<acme:submit name="save" code="receipt.save"/>
+		
+	</form:form>
+	
+</jstl:if>
+
+</security:authorize>
+
+<security:authorize access="hasRole('POLLER')">
+	<input type="button" name="cancel" value="<spring:message code="receipt.cancel" />" onclick="javascript: window.location.replace('<spring:url value='/bill/myList.do' />')" />
+</security:authorize>
+
+<%-- <security:authorize access="hasRole('ADMIN')">
+	<input type="button" name="cancel" value="<spring:message code="receipt.cancel" />" onclick="javascript: window.location.replace('<spring:url value='/bill/endorsedList.do' />')" />
+</security:authorize> --%>
+

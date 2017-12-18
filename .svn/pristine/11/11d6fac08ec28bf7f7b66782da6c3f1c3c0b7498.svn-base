@@ -1,0 +1,113 @@
+
+package services;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.transaction.Transactional;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.util.Assert;
+
+import utilities.AbstractTest;
+import domain.Actor;
+import domain.Message;
+import domain.Priority;
+
+@Transactional
+@ContextConfiguration(locations = {
+	"classpath:spring/junit.xml"
+})
+@RunWith(SpringJUnit4ClassRunner.class)
+@TransactionConfiguration(defaultRollback = true)
+public class MessageServiceTest extends AbstractTest {
+
+	// The SUT
+	// ====================================================
+
+	@Autowired
+	private FolderService	folderService;
+
+	@Autowired
+	private ActorService	actorService;
+
+	@Autowired
+	private MessageService	messageService;
+
+
+	// Tests
+	// ====================================================
+
+	/*
+	 * To check the validity of a message, the system must check its subjects, its body, its priority and its recipients.
+	 * 
+	 * En este test, se comprueba el titulo del mensaje, el cuerpo, la prioridad y los receptores.
+	 * Para ello introducimos valores correctos e incorrectos para observa el comportamiento de la aplicación.
+	 */
+
+	/*
+	 * Create a messge.
+	 * 
+	 * Para ello introducimos valores correctos e incorrectos para observa el comportamiento de la aplicación
+	 */
+
+	public void editMessageTest(final String username, String subject, String body, String priority, Integer actorId, final Class<?> expected) {
+		Class<?> caught = null;
+
+		try {
+			this.authenticate(username);
+
+			Message result;
+			Actor actor = actorService.findByPrincipal();
+			Actor actorR = actorService.findOne(actorId);
+			Assert.notNull(actor);
+			Assert.notNull(actorR);
+			Assert.notNull(subject);
+			Assert.notNull(body);
+			result = messageService.create();
+
+			result.setSubject(subject);
+			result.setBody(body);
+			Collection<Actor> receives = new ArrayList<Actor>();
+			receives.add(actorR);
+			result.setReceives(receives);
+			result.setPriority(Priority.valueOf(priority));
+			messageService.sendMessage(result);
+			this.unauthenticate();
+
+		} catch (final Throwable oops) {
+
+			caught = oops.getClass();
+
+		}
+
+		this.checkExceptions(expected, caught);
+	}
+
+	// Drivers
+	// ====================================================
+
+	@Test
+	public void driverEditMessageTest() {
+
+		final Object testingData[][] = {
+			// Alguien sin registrar/logueado -> false
+			{
+				null, "SubjectTest", "BodyTest", "HIGH", 8, IllegalArgumentException.class
+			},
+			// Un actor logueado con todo correcto -> true
+			{
+				"poller1", "SubjectTest", "BodyTest", "HIGH", 8, null
+			},
+
+		};
+		for (int i = 0; i < testingData.length; i++)
+			this.editMessageTest((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (Integer) testingData[i][4], (Class<?>) testingData[i][5]);
+	}
+
+}

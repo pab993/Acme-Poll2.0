@@ -1,0 +1,28 @@
+# messages_es.properties
+#
+# Copyright (C) 2017 Universidad de Sevilla
+# 
+# The use of this project is hereby constrained to the conditions of the 
+# TDG Licence, a copy of which you may download from 
+# http://www.tdg-seville.info/License.html
+
+administrator.action.1	= Esta es la acción 1 del administrador
+administrator.action.2	= Esta es la acción 2 del administrador
+
+poller.name				= Nombre
+poller.surname			= Apellidos
+poller.email			= Correo electrónico
+poller.phoneNumber		= Número de teléfono
+poller.postalAddress	= Dirección postal
+poller.unban			= Desbanear
+poller.ban				= Banear
+poller.cancel			= Cancelar
+
+firstQuery				= El mínimo, la media, la desviación estándar y el máximo de encuestas por encuestador
+secondQuery				= El mínimo, la media, la desviación estándar y el máximo de instancias por encuesta
+thirstQuery				= El mínimo, la media, la desviación estándar y el máximo de preguntas por encuesta
+
+dashboard.min			= Mínimo
+dashboard.max			= Máximo
+dashboard.avg			= Media
+dashboard.ds			= Desviación estandar

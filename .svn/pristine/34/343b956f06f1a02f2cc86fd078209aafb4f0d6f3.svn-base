@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2017 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="enabled" value="true" />
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="enabled" value="true" />
+		<property name="username" value="poller1" />
+		<property name="password" value="1290cc39f4233ee0221f31516ad4125c" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="POLLER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="enabled" value="true" />
+		<property name="username" value="poller2" />
+		<property name="password" value="4263c838ba3abcedbbb0328db3060656" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="POLLER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="enabled" value="true" />
+		<property name="username" value="poller3" />
+		<property name="password" value="431699a6bfcf8c7cc248c9d4d26fa0d6" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="POLLER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Other domain beans come here -->	
+	
+	<!-- ADMINISTRATORS -->
+	
+	<bean id="admin" class="domain.Administrator" >
+		<property name="name" value="NameAdmin"  />
+		<property name="surname" value="SurnameAdmin" />
+		<property name="phoneNumber" value="+ES647382899" />
+		<property name="email" value="admin@admin.com" />
+		<property name="postalAddress" value="41008"  />
+		<property name="userAccount" ref="userAccount1" />
+	</bean>
+	
+	<!-- POLLERS -->
+	
+	<bean id="poller1" class="domain.Poller">
+		<property name="name" value="NamePoller1"  />
+		<property name="surname" value="SurnamePoller1" />
+		<property name="phoneNumber" value="+ES647222809" />
+		<property name="email" value="poller1@poller1.com" />
+		<property name="postalAddress" value="41303"  />
+		<property name="userAccount" ref="userAccount2" />
+		<property name="polls">
+			<list>
+				<ref bean="poll1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="poller2" class="domain.Poller">
+		<property name="name" value="NamePoller2"  />
+		<property name="surname" value="SurnamePoller2" />
+		<property name="phoneNumber" value="+ES657262809" />
+		<property name="email" value="poller2@poller2.com" />
+		<property name="postalAddress" value="45323"  />
+		<property name="userAccount" ref="userAccount3" />
+		<property name="polls">
+			<list>
+				<ref bean="poll2"/>
+				<ref bean="poll6"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="poller3" class="domain.Poller">
+		<property name="name" value="NamePoller3"  />
+		<property name="surname" value="SurnamePoller3" />
+		<property name="phoneNumber" value="+ES657112809" />
+		<property name="email" value="poller3@poller3.com" />
+		<property name="postalAddress" value="41111"  />
+		<property name="userAccount" ref="userAccount4" />
+		<property name="polls">
+			<list>
+				
+			</list>
+		</property>
+	</bean>
+	
+	<!-- POLLS -->
+	
+	<bean id="poll1" class="domain.Poll">
+		<property name="title" value="title1"/>
+		<property name="description" value="description1"/>
+		<property name="banner" value="https://cdn.elegantthemes.com/blog/wp-content/uploads/2015/12/poll-plugins-thumbnail.jpg"/>
+		<property name="startActive" value="01/04/2018 14:00"/>
+		<property name="endActive" value="02/25/2018 14:00"/>
+		<property name="ticker" value="aa-12345"/>
+		<property name="poller" ref="poller1"/>
+		<property name="bill" ref="bill1"/>
+		<property name="instances">
+			<list>
+				<ref bean="instance1"/>
+				<ref bean="instance2"/>
+			</list>
+		</property>
+		<property name="questions">
+			<list>
+				<ref bean="question1"/>
+				<ref bean="question2"/>
+				<ref bean="question3"/>
+				<ref bean="question4"/>
+			</list>
+		</property>
+		<property name="actors">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="poll2" class="domain.Poll">
+		<property name="title" value="title2"/>
+		<property name="description" value="description2"/>
+		<property name="banner" value="https://cdn.elegantthemes.com/blog/wp-content/uploads/2015/12/poll-plugins-thumbnail.jpg"/>
+		<property name="startActive" value="01/20/2017 14:00"/>
+		<property name="endActive" value="01/25/2017 14:00"/>
+		<property name="ticker" value="bb-19345"/>
+		<property name="poller" ref="poller2"/>
+		<property name="instances">
+			<list>
+				<ref bean="instance3"/>
+			</list>
+		</property>
+		<property name="questions">
+			<list>
+				<ref bean="question5"/>
+				<ref bean="question6"/>
+			</list>
+		</property>
+		<property name="actors">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="poll3" class="domain.Poll">
+		<property name="title" value="title3"/>
+		<property name="description" value="description3"/>
+		<property name="banner" value="https://cdn.elegantthemes.com/blog/wp-content/uploads/2015/12/poll-plugins-thumbnail.jpg"/>
+		<property name="startActive" value="01/20/2018 14:00"/>
+		<property name="endActive" value="04/25/2018 14:00"/>
+		<property name="ticker" value="cc-19375"/>
+		<property name="poller" ref="poller1"/>
+		<property name="instances">
+			<list>
+				
+			</list>
+		</property>
+		<property name="questions">
+			<list>
+				<ref bean="question7"/>
+			</list>
+		</property>
+		<property name="actors">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+		
+	<bean id="poll4" class="domain.Poll">
+		<property name="title" value="title4"/>
+		<property name="description" value="description4"/>
+		<property name="banner" value="https://cdn.elegantthemes.com/blog/wp-content/uploads/2015/12/poll-plugins-thumbnail.jpg"/>
+		<property name="startActive" value="10/01/2017 14:00"/>
+		<property name="endActive" value="11/02/2017 13:00"/>
+		<property name="ticker" value="ss-12275"/>
+		<property name="poller" ref="poller1"/>
+		<property name="bill" ref="bill3"/>
+		<property name="instances">
+			<list>
+				
+			</list>
+		</property>
+		<property name="questions">
+			<list>
+				<ref bean="question8"/>
+				<ref bean="question9"/>
+			</list>
+		</property>
+		<property name="actors">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="poll5" class="domain.Poll">
+		<property name="title" value="title5"/>
+		<property name="description" value="description5"/>
+		<property name="banner" value="https://cdn.elegantthemes.com/blog/wp-content/uploads/2015/12/poll-plugins-thumbnail.jpg"/>
+		<property name="startActive" value="09/24/2017 14:00"/>
+		<property name="endActive" value="12/25/2017 13:00"/>
+		<property name="ticker" value="xx-12271"/>
+		<property name="poller" ref="poller1"/>
+		<property name="instances">
+			<list>
+				
+			</list>
+		</property>
+		<property name="questions">
+			<list>
+				<ref bean="question10"/>
+				<ref bean="question11"/>
+			</list>
+		</property>
+		<property name="actors">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="poll6" class="domain.Poll">
+		<property name="title" value="title6"/>
+		<property name="description" value="description6"/>
+		<property name="banner" value="https://cdn.elegantthemes.com/blog/wp-content/uploads/2015/12/poll-plugins-thumbnail.jpg"/>
+		<property name="startActive" value="09/24/2017 14:00"/>
+		<property name="endActive" value="10/04/2017 13:00"/>
+		<property name="ticker" value="xp-12071"/>
+		<property name="poller" ref="poller2"/>
+		<property name="bill" ref="bill2"/>
+		<property name="instances">
+			<list>
+				
+			</list>
+		</property>
+		<property name="questions">
+			<list>
+				<ref bean="question12"/>
+			</list>
+		</property>
+		<property name="actors">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- QUESTIONS -->
+	
+	<bean id="question1" class="domain.Question">
+		<property name="statement" value="What is love?"/>
+		<property name="poll" ref="poll1"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer1"/>
+				<ref bean="answer2"/>
+			</list>
+		</property>
+	</bean>
+		
+	<bean id="question2" class="domain.Question">
+		<property name="statement" value="Sarandonga..."/>
+		<property name="poll" ref="poll1"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer3"/>
+				<ref bean="answer4"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="question3" class="domain.Question">
+		<property name="statement" value="Pim pam..."/>
+		<property name="poll" ref="poll1"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer5"/>
+				<ref bean="answer6"/>
+				<ref bean="answer7"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="question4" class="domain.Question">
+		<property name="statement" value="Las gallinas que entran..."/>
+		<property name="poll" ref="poll1"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer8"/>
+				<ref bean="answer9"/>
+				<ref bean="answer10"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="question5" class="domain.Question">
+		<property name="statement" value="Si tengo 4 manzanas y Pepe me quita dos..."/>
+		<property name="poll" ref="poll2"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer11"/>
+				<ref bean="answer12"/>
+				<ref bean="answer13"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="question6" class="domain.Question">
+		<property name="statement" value="abracadabra..."/>
+		<property name="poll" ref="poll2"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer14"/>
+				<ref bean="answer15"/>
+				<ref bean="answer16"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="question7" class="domain.Question">
+		<property name="statement" value="¿Qué opinas de Rick y Morty?"/>
+		<property name="poll" ref="poll3"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer17"/>
+				<ref bean="answer18"/>
+				<ref bean="answer19"/>
+			</list>
+		</property>
+	</bean>
+			
+	<bean id="question8" class="domain.Question">
+		<property name="statement" value="¿Qué tal todo?"/>
+		<property name="poll" ref="poll4"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer20"/>
+				<ref bean="answer21"/>
+			</list>
+		</property>
+	</bean>
+				
+	<bean id="question9" class="domain.Question">
+		<property name="statement" value="¿Qué te cuentas?"/>
+		<property name="poll" ref="poll4"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer22"/>
+				<ref bean="answer23"/>
+			</list>
+		</property>
+	</bean>
+	
+				
+	<bean id="question10" class="domain.Question">
+		<property name="statement" value="¿2+2?"/>
+		<property name="poll" ref="poll5"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer24"/>
+				<ref bean="answer25"/>
+			</list>
+		</property>
+	</bean>
+				
+	<bean id="question11" class="domain.Question">
+		<property name="statement" value="¿r*2+x^2/3  es perfecto o sólo me lo parece a mí?"/>
+		<property name="poll" ref="poll5"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer26"/>
+				<ref bean="answer27"/>
+			</list>
+		</property>
+	</bean>
+	
+					
+	<bean id="question12" class="domain.Question">
+		<property name="statement" value="¿Pepsi o cocacola?"/>
+		<property name="poll" ref="poll6"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer28"/>
+				<ref bean="answer29"/>
+				<ref bean="answer30"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- ANSWERS -->
+	
+	<bean id="answer1" class="domain.Answer">
+		<property name="ans" value="Baby don't hurt me"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question1"/>
+	</bean>
+	
+	<bean id="answer2" class="domain.Answer">
+		<property name="ans" value="Baby don't shot me in the face pls"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question1"/>
+	</bean>
+	
+	<bean id="answer3" class="domain.Answer">
+		<property name="ans" value="Cuchibiri cuchibiri"/>
+		<property name="counter" value="1"/>
+		<property name="question" ref="question2"/>
+	</bean>
+	
+	<bean id="answer4" class="domain.Answer">
+		<property name="ans" value="Me como un bacalao"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question2"/>
+	</bean>
+	
+		
+	<bean id="answer5" class="domain.Answer">
+		<property name="ans" value="Toma lacasitos"/>
+		<property name="counter" value="2"/>
+		<property name="question" ref="question3"/>
+	</bean>
+	
+	<bean id="answer6" class="domain.Answer">
+		<property name="ans" value="Tú antes molabas..."/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question3"/>
+	</bean>
+	
+	<bean id="answer7" class="domain.Answer">
+		<property name="ans" value="Youtube money bit**"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question3"/>
+	</bean>
+	
+		
+	<bean id="answer8" class="domain.Answer">
+		<property name="ans" value="Por las que vendo en el mercado negro"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question4"/>
+	</bean>
+	
+		
+	<bean id="answer9" class="domain.Answer">
+		<property name="ans" value="Por las que salen"/>
+		<property name="counter" value="4"/>
+		<property name="question" ref="question4"/>
+	</bean>
+	
+	<bean id="answer10" class="domain.Answer">
+		<property name="ans" value="¡Ahí va esa maaaagra!"/>
+		<property name="counter" value="4"/>
+		<property name="question" ref="question4"/>
+	</bean>
+	
+	<bean id="answer11" class="domain.Answer">
+		<property name="ans" value="Me quedan dos manzanas"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question5"/>
+	</bean>
+	
+	<bean id="answer12" class="domain.Answer">
+		<property name="ans" value="Le reviento la cara a Pepe por ladrón"/>
+		<property name="counter" value="4"/>
+		<property name="question" ref="question5"/>
+	</bean>
+	
+	<bean id="answer13" class="domain.Answer">
+		<property name="ans" value="Me quedan 0 manzanas por el tema de hacienda y eso. De hecho puede que sean -1 manzanas"/>
+		<property name="counter" value="4"/>
+		<property name="question" ref="question5"/>
+	</bean>
+		
+	<bean id="answer14" class="domain.Answer">
+		<property name="ans" value="Pata de cabra"/>
+		<property name="counter" value="4"/>
+		<property name="question" ref="question6"/>
+	</bean>
+	
+	<bean id="answer15" class="domain.Answer">
+		<property name="ans" value="Magnífica pelicula, 10 de 10."/>
+		<property name="counter" value="4"/>
+		<property name="question" ref="question6"/>
+	</bean>
+	
+	<bean id="answer16" class="domain.Answer">
+		<property name="ans" value="Tápate señorita de dudosa reputación"/>
+		<property name="counter" value="4"/>
+		<property name="question" ref="question6"/>
+	</bean>
+	
+			
+	<bean id="answer17" class="domain.Answer">
+		<property name="ans" value="Es la leche"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question7"/>
+	</bean>
+	
+	<bean id="answer18" class="domain.Answer">
+		<property name="ans" value="Me encanta"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question7"/>
+	</bean>
+	
+	<bean id="answer19" class="domain.Answer">
+		<property name="ans" value="¿Hace falta preguntar?"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question7"/>
+	</bean>
+	
+		
+	<bean id="answer20" class="domain.Answer">
+		<property name="ans" value="Bien"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question8"/>
+	</bean>
+	
+			
+	<bean id="answer21" class="domain.Answer">
+		<property name="ans" value="Regular"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question8"/>
+	</bean>
+	
+	<bean id="answer22" class="domain.Answer">
+		<property name="ans" value="Nada"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question9"/>
+	</bean>
+	
+	<bean id="answer23" class="domain.Answer">
+		<property name="ans" value="Pues mira te comento..."/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question9"/>
+	</bean>
+		
+	<bean id="answer24" class="domain.Answer">
+		<property name="ans" value="4"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question10"/>
+	</bean>
+	
+	<bean id="answer25" class="domain.Answer">
+		<property name="ans" value="Patata"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question10"/>
+	</bean>
+			
+	<bean id="answer26" class="domain.Answer">
+		<property name="ans" value="Es perfecto"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question11"/>
+	</bean>
+	
+	<bean id="answer27" class="domain.Answer">
+		<property name="ans" value="No, no es perfecto."/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question11"/>
+	</bean>
+			
+	<bean id="answer28" class="domain.Answer">
+		<property name="ans" value="Pepsi"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question12"/>
+	</bean>
+			
+	<bean id="answer29" class="domain.Answer">
+		<property name="ans" value="Cocacola"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question12"/>
+	</bean>
+			
+	<bean id="answer30" class="domain.Answer">
+		<property name="ans" value="Dr. Pepper"/>
+		<property name="counter" value="0"/>
+		<property name="question" ref="question12"/>
+	</bean>
+	
+	<!-- INSTANCES -->
+
+	<bean id="instance1" class="domain.Instance">
+		<property name="name" value="Anónimo"/>
+		<property name="genre" value="MALE"/>
+		<property name="city" value="Sevilla"/>
+		<property name="poll" ref="poll1"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer1"/>
+				<ref bean="answer4"/>
+				<ref bean="answer7"/>
+				<ref bean="answer8"/>
+			</list>
+		</property>
+	</bean>
+ 		
+	<bean id="instance2" class="domain.Instance">
+		<property name="name" value="Anónimo again"/>
+		<property name="genre" value="FEMALE"/>
+		<property name="city" value="Sevilla"/>
+		<property name="poll" ref="poll1"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer2"/>
+				<ref bean="answer4"/>
+				<ref bean="answer7"/>
+				<ref bean="answer10"/>
+			</list>
+		</property>
+	</bean>
+		
+	<bean id="instance3" class="domain.Instance">
+		<property name="name" value="Juana"/>
+		<property name="genre" value="FEMALE"/>
+		<property name="city" value="Madrid"/>
+		<property name="poll" ref="poll2"/>
+		<property name="answers">
+			<list>
+				<ref bean="answer12"/>
+				<ref bean="answer15"/>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- BILLS -->
+	
+	<bean id="bill1" class="domain.Bill">
+		<property name="amountDue" value="10.0"/>
+		<property name="momentDue" value="03/25/2018 14:00" />
+		<property name="paid" value="true"/>
+		<property name="poll" ref="poll1"/>
+		<property name="receipt" ref="receipt1"/>
+	</bean>
+	
+	<bean id="bill2" class="domain.Bill">
+		<property name="amountDue" value="1.0"/>
+		<property name="momentDue" value="12/14/2017 13:00" />
+		<property name="paid" value="false"/>
+		<property name="poll" ref="poll6"/>
+	</bean>
+	
+	<bean id="bill3" class="domain.Bill">
+		<property name="amountDue" value="16.50"/>
+		<property name="momentDue" value="01/02/2018 10:00" />
+		<property name="paid" value="false"/>
+		<property name="poll" ref="poll4"/>
+		<property name="receipt" ref="receipt2"/>
+	</bean>
+	
+		
+	<!-- RECEIPTS -->
+	
+	<bean id="receipt1" class="domain.Receipt">
+		<property name="pdf" value="https://www.dropbox.com/s/0epzo0vf45e8ed1/Factura%201.pdf?dl=0" />
+		<property name="endorsed" value="true"/>
+		<property name="bill" ref="bill1"/>
+	</bean>
+	
+	<bean id="receipt2" class="domain.Receipt">
+		<property name="pdf" value="https://www.dropbox.com/s/rrsa0c80iyrloeg/Factura%202.pdf?dl=0" />
+		<property name="endorsed" value="false"/>
+		<property name="bill" ref="bill3"/>
+	</bean>
+	
+	
+	<!-- CONFIGURATION SYSTEM -->
+	
+	<bean id="configurationSystem" class="domain.ConfigurationSystem">
+		<property name="minimumPeriodActive" value="2"/>
+	</bean>
+	
+</beans>

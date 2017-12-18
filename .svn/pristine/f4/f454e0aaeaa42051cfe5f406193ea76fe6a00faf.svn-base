@@ -1,0 +1,28 @@
+# messages_es.properties
+#
+# Copyright (C) 2017 Universidad de Sevilla
+# 
+# The use of this project is hereby constrained to the conditions of the 
+# TDG Licence, a copy of which you may download from 
+# http://www.tdg-seville.info/License.html
+
+
+bill.momentDue				= 	Vencimiento
+bill.amountDue				=	Cantidad debida
+bill.paid.yes				= 	Pagado
+bill.paid.no				= 	No pagado
+bill.receipt				=	Lista de recibos
+bill.poll					=	Encuesta
+bill.info					=	Información de la factura
+bill.unpaid					=	La factura aún no ha sido pagada
+bill.paid					=	La factura ha sido pagada
+bill.endorsed				=	Sí
+bill.not.endorsed			=	No
+
+receipt.cancel				= 	Cancelar
+receipt.ask					= 	¿Seguro que quiere guardar este recibo? Una vez guardado no podrá deshacer el cambio
+receipt.pdf					=	Recibo
+receipt.save				=	Guardar
+receipt.commit.error		=	No se puede realizar esta operación
+
+bill.payment				=   ¿Endorsar?

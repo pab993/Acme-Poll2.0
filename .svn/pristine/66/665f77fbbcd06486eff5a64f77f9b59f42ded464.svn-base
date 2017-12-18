@@ -1,0 +1,57 @@
+# messages.properties
+#
+# Copyright (C) 2017 Universidad de Sevilla
+# 
+# The use of this project is hereby constrained to the conditions of the 
+# TDG Licence, a copy of which you may download from 
+# http://www.tdg-seville.info/License.html
+
+poll.banner					=	Banner
+poll.title					=	Title
+poll.description			=	Description
+poll.endActive				=	End of the poll
+poll.startActive			=	Start of the poll
+poll.ticker					=	Ticker
+
+poll.cancel					=	Go back to the main page
+poll.cancel.list			=	Go back to the list of polls
+poll.cancel.myList			=	Go back to my polls
+
+poll.info					=	General information
+poll.submit					=	Complete
+poll.save					=	Save
+poll.delete					=	Delete
+poll.confirm				=	Are you sure about delete this poll?
+poll.edit					=	Edit
+poll.create					= 	Create a poll
+
+poll.display				=	Display the poll
+poll.commit.error			= 	All the question must be answered
+poll.commit.error.2			= 	Can not commit this operation
+
+poll.dates.inverted.1		=	The start date must be less than the end date.
+poll.dates.inverted.2		=	The end date must be greater than the start date.
+poll.endDate.minimum		=	The period active of this poll is too small
+
+poll.keyword				=	Search polls
+poll.search					=	Search
+poll.results				= 	Results
+poll.not.started			=	The poll has not started yet.
+poll.finished				=	The poll is over
+poll.deny					=	The reason may be that you have already completed the poll.
+poll.not.available			= 	Poll not available
+poll.edit.deny				=	The poll can not be edited because it may is active or may has over.
+poll.startActive.future		=	The poll must start in the future
+poll.endActive.future		= 	The poll must end in the future
+poll.min					=	Has the poll a short time active?
+poll.time.short				=	The active time  is too short, so it will not be displayed on the system
+
+poll.question.list			= 	List of questions
+
+poll.info.optional			=	Optional information. Fill in these fields if you want to provide more information
+poll.name					=	Name
+poll.genre					=	Genre
+poll.default				=	----
+poll.man					=	Man
+poll.woman					= 	Woman
+poll.city					=	City

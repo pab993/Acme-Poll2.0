@@ -1,0 +1,24 @@
+# messages.properties
+#
+# Copyright (C) 2017 Universidad de Sevilla
+# 
+# The use of this project is hereby constrained to the conditions of the 
+# TDG Licence, a copy of which you may download from 
+# http://www.tdg-seville.info/License.html
+
+bill.momentDue				= 	Moment due
+bill.amountDue				=	Amount due
+bill.paid.yes				= 	Paid
+bill.paid.no				= 	Not paid	
+bill.receipt				= 	List of receipts
+bill.poll					= 	Poll
+bill.unpaid					=	The bill has not yet been paid
+bill.paid					=	The bill has been paid
+
+receipt.cancel					= 	Cancel
+
+receipt.ask					= 	¿Are you sure to save this receipt? Once saved this can not be undone
+receipt.pdf					=	Receipt
+receipt.save				=	Save
+receipt.commit.error		=	Cannot commit this operation
+bill.info					=	Bill information

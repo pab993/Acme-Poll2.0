@@ -1,0 +1,30 @@
+# messages.properties
+#
+# Copyright (C) 2017 Universidad de Sevilla
+# 
+# The use of this project is hereby constrained to the conditions of the 
+# TDG Licence, a copy of which you may download from 
+# http://www.tdg-seville.info/License.html
+
+poll.banner					=	Banner
+poll.title					=	Title
+poll.description			=	Description
+poll.endActive				=	End of the poll
+poll.startActive			=	Start of the poll
+poll.ticker					=	Ticker
+poll.instances				=	Number of instances
+
+bill.momentDue				= 	Moment due
+bill.amountDue				=	Amount due
+bill.paid.yes				= 	Paid
+bill.paid.no				= 	Not paid	
+bill.receipt				= 	Receipt
+bill.receipt.create			= 	Add receipt
+bill.poll					= 	Poll
+bill.info					=	Bill information
+bill.no.receipt				=	No receipt yet
+bill.cancel					= 	Cancel
+bill.receipt.display		=	Display receipt
+
+bill.commit.error			=	Cannot commit this operation
+bill.save					=	Save

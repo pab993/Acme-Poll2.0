@@ -1,0 +1,28 @@
+# messages.properties
+#
+# Copyright (C) 2017 Universidad de Sevilla
+# 
+# The use of this project is hereby constrained to the conditions of the 
+# TDG Licence, a copy of which you may download from 
+# http://www.tdg-seville.info/License.html
+
+administrator.action.1	= This is the administrator's action 1
+administrator.action.2	= This is the administrator's action 2
+
+poller.name				= Name
+poller.surname			= Surname
+poller.email			= Email
+poller.phoneNumber		= Phone number
+poller.postalAddress	= Dirección postal
+poller.unban			= Unban
+poller.ban				= Ban
+poller.cancel			= Cancel
+
+firstQuery				= The minimum, the maximum, the average, and the standard deviation of the number of polls per poller.
+secondQuery				= The minimum, the maximum, the average, and the standard deviation of the number of instances per poll.
+thirstQuery				= The minimum, the maximum, the average, and the standard deviation of the number of questions per poll.
+
+dashboard.min			= Minimum
+dashboard.max			= Maximum
+dashboard.avg			= Average
+dashboard.ds			= Standar desviation

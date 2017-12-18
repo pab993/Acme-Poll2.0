@@ -1,0 +1,29 @@
+# messages.properties
+#
+# Copyright (C) 2017 Universidad de Sevilla
+# 
+# The use of this project is hereby constrained to the conditions of the 
+# TDG Licence, a copy of which you may download from 
+# http://www.tdg-seville.info/License.html
+
+poller.accountData			=	Data of the new account
+poller.username				= 	Username
+poller.password				=	Password
+poller.repeatPassword		=	Repeat password
+
+poller.personalData			=	Personal data
+poller.name					=	Name
+poller.surname				=	Surnames
+poller.phoneNumber			=	Phone number
+poller.email				= 	Email
+poller.postalAddress		= 	Postal Address
+
+poller.accept				=	Accept
+poller.lopd					=	Terms and conditions
+poller.submit				=	Register
+
+poller.save.error					= Cannot commit this operation
+poller.password.mismatch			= Passwords cannot be blank and must match
+poller.postalAddress.error			= The pattern of the postal address is not correct
+poller.phoneNumber.error			= The phone number doesn't match any pattern
+poller.userAccount.taken			= This username is already in use
